@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Artist Search </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="circle-container">
+                <span>SM</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="search-artist">
+     <h1>Artist search</h1>
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <form method="post" action="{{ url_for('index') }}">
+         {{ form.csrf_token }}
+            <input type="text" name="artist_name" placeholder="Enter artist name" required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>
